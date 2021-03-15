@@ -1,5 +1,7 @@
 <template lang="pug">
 .head-page
+  a.head-page__back(v-if="hasBack", href="/")
+    i.fas.fa-arrow-left
   .head-page__title {{ title }}
   a.head-page__close(href="/")
     i.fas.fa-times
@@ -11,6 +13,10 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    hasBack: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -35,9 +41,17 @@ export default {
     margin: 0 auto;
   }
 
+  &__back,
   &__close {
     font-size: 24px;
     color: #b8b8b8;
+  }
+
+  &__back {
+    margin-right: -12px;
+  }
+
+  &__close {
     margin-left: -12px;
   }
 }

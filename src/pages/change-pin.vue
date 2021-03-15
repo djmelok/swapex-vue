@@ -1,6 +1,6 @@
 <template lang="pug">
 .change-pin
-  HeadPage
+  HeadPage(hasBack)
   img.change-pin__logo(src="@/assets/images/logo.png")
   transition(name="title", mode="out-in")
     span.change-pin__title(v-if="step === 0", key="1") Введите новый PIN-код
