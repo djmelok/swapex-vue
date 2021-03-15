@@ -31,9 +31,6 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log('GET_SHOW_DATA', this.GET_SHOW_DATA);
-  },
   methods: {
     ...mapActions(['SHOW_DATA', 'HIDE_DATA', 'TOGGLE_DATA']),
     touchShow() {
