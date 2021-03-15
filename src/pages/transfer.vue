@@ -11,7 +11,7 @@
         span 0.00 USD
         span 0.00 UAH
       .transfer__content-course-crypto
-        | {{ inputRange / 1000 }} BTC
+        | {{ (inputRange / 1000).toFixed(2) }} BTC
     .transfer__content-range
       .transfer__content-range-dash.transfer__content-range-dash--left 
         span.transfer__content-range-dash-text min
@@ -19,7 +19,7 @@
         span.transfer__content-range-dash-text 50%
       .transfer__content-range-dash.transfer__content-range-dash--right 
         span.transfer__content-range-dash-text max
-      input.transfer__content-range-input(v-model="inputRange", type="range", min="1", :max="maxValue", value="25000")
+      input.transfer__content-range-input(v-model="inputRange", type="range", step="0.01", min="0", :max="maxValue", value="25000")
     .transfer__content-often
       button.transfer__content-often-button(
         v-for="item in oftenUsed",
@@ -28,8 +28,8 @@
         type="button"
       ) {{ (item / 1000).toFixed(2) }}
     .transfer__content-address
-      input.transfer__content-address-input(type="text", placeholder="Адрес получателя")
-      button.transfer__content-address-button(type="button")
+      input.transfer__content-address-input(type="text", placeholder="Адрес получателя", ref="address")
+      button.transfer__content-address-button(type="button", @click="clickPaste")
         i.fas.fa-paste.transfer__content-address-button-icon
     BaseSubmit(title="Далее")
 </template>
@@ -59,7 +59,19 @@ export default {
     clickOftenButton(item) {
       this.inputRange = item;
     },
+    clickPaste() {
+      if (!navigator.clipboard) return;
+
+      navigator.clipboard.readText().then(clipText => {
+        this.$refs.address.value = clipText
+      });
+    },
   },
+  watch: {
+    inputRange(val) {
+      return Number(val).toFixed(2);
+    }
+  }
 };
 </script>
 

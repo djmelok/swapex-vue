@@ -8,7 +8,8 @@
         span.coin__info-head-text-name Bitcoin
         .coin__info-head-text-field
           span.coin__info-head-text-field-code {{ shortCode }}
-          i.far.fa-copy.coin__info-head-text-field-icon
+          button.coin__info-head-text-field-button(type="button", @click="clickCopy")
+            i.far.fa-copy.coin__info-head-text-field-button-icon
     .coin__info-balance
       .coin__info-balance-crypto 0
       .coin__info-balance-dollars $ 0
@@ -43,6 +44,21 @@ export default {
       const length = this.code.length;
       return `${this.code.slice(0, 6)}.....${this.code.slice(length - 6, length)}`;
     }
+  },
+  methods: {
+    clickCopy() {
+      const input = document.createElement('input');
+      input.setAttribute('value', this.code);
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand("copy");
+      document.body.removeChild(input);
+      this.$toast.default('Скопировано в буфер', {
+        queue: true,
+        duration: 2000,
+        position: 'bottom'
+      });
+    },
   }
 };
 </script>
@@ -89,19 +105,22 @@ export default {
         &-field {
           display: flex;
           align-items: center;
-          color: #b8b8b8;
 
           &-code {
             max-width: calc(100% - 80px);
             text-overflow: ellipsis;
             overflow: hidden;
             font-weight: 500;
+            color: #b8b8b8;
           }
 
-          &-icon {
-            width: 16px;
-            height: 16px;
+          &-button {
             margin-left: 16px;
+
+            &-icon {
+              color: #b8b8b8;
+              font-size: 18px;
+            }
           }
         }
       }

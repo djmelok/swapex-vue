@@ -7,6 +7,7 @@
   letter-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
   margin: 0;
   padding: 0;
 
@@ -64,4 +65,30 @@ button {
 .content {
   margin: 80px 0;
   padding: 12px;
+}
+
+.v-toast__item--default {
+  background-color: #2e2e2e;
+}
+
+.v-toast__item--error {
+  background-color: #b7637f;
+}
+
+.v-toast__item--success {
+  background-color: #64b180;
+}
+
+.v-toast--top .v-toast__item {
+  height: 56px;
+  min-height: auto;
+  margin: 12px 0;
+}
+
+.v-toast__item {
+  border-radius: 0.5em;
+}
+
+.v-toast__item .v-toast__text {
+  padding: 1em;
 }

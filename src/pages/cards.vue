@@ -5,7 +5,7 @@
     img.cards__content-logo(src="../assets/images/icons/visa-master-dark.png")
     .cards__content-card(v-for="card in saveCards")
       .cards__content-card-number {{ card.number }}
-      .cards__content-card-country {{ card.country }}
+      .cards__content-card-name {{ card.name }}
       .cards__content-card-date {{ card.date }}
     a.cards__content-add(href="#")
       i.fas.fa-plus.cards__content-add-icon
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       saveCards: [
-        { number: '4441 **** 9634', country: 'Ukraine', date: '12/24' },
+        { number: '4441 **** 9634', name: 'Александр Петров', date: '12/24' },
       ],
     };
   },
@@ -69,14 +69,17 @@ export default {
         font-weight: bold;
       }
 
-      &-country,
+      &-name,
       &-date {
         font-weight: bold;
         border-left: 2px solid #dadada;
-        padding-left: 12px;
+        padding: 0 12px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
-      &-country {
+      &-name {
         color: #636363;
       }
     }

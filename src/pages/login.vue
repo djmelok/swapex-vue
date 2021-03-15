@@ -1,7 +1,6 @@
 <template lang="pug">
 .login
-  .login__logo
-    img(src="@/assets/images/logo.png")
+  img.login__logo(src="@/assets/images/logo.png")
   .login__checkbox
     input#checkbox.login__checkbox-input(v-model="checkbox", type="checkbox", name="checkbox")
     label.login__checkbox-label(for="checkbox")
@@ -61,12 +60,8 @@ export default {
   justify-content: center;
 
   &__logo {
-    width: 256px;
-    height: 256px;
-
-    img {
-      width: 100%;
-    }
+    width: 224px;
+    height: auto;
   }
 
   &__checkbox {
