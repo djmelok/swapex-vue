@@ -34,14 +34,14 @@
         BaseSwitch
 
     .index-sidebar__content-title Другое
-    button.index-sidebar__content-button(type="button")
+    button.index-sidebar__content-button.index-sidebar__content-button--disabled(type="button")
       .index-sidebar__content-button-icon
         i.fas.fa-moon
       .index-sidebar__content-button-title Темный режим
         .index-sidebar__content-button-title-state Включен
       .index-sidebar__content-button-action
-        BaseSwitch
-    button.index-sidebar__content-button(type="button")
+        BaseSwitch(checked)
+    button.index-sidebar__content-button.index-sidebar__content-button--disabled(type="button")
       .index-sidebar__content-button-icon
         i.fas.fa-language
       .index-sidebar__content-button-title Language
@@ -143,6 +143,11 @@ export default {
       flex-grow: 1;
       padding: 12px 0;
       font-size: 16px;
+
+      &--disabled {
+        opacity: 0.6;
+        pointer-events: none;
+      }
 
       & + & {
         border-top: 1px solid #252525;

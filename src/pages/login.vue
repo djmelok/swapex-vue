@@ -9,16 +9,27 @@
         a(href="#") условиями пользованиями&nbsp;
         | и&nbsp;
         a(href="#") политикой конфиденциальности
-  a.login__button(:class="getClassName", href="/auth/google")
-    i.fab.fa-google
-    span Google
-  a.login__button.login__button--disabled(:class="getClassName", href="/auth/telegram")
-    i.fab.fa-telegram-plane
-    span Telegram
+  .login__buttons
+    a.login__button.login__button--signin(:class="getClassName", href="/signin/")
+      i.fas.fa-sign-in-alt
+      span Войти
+    a.login__button.login__button--google(:class="getClassName", href="/auth/google")
+      i.fab.fa-google
+    //- ButtonTelegram
+    a.login__button.login__button--telegram.login__button--disabled(:class="getClassName", href="/auth/telegram")
+      i.fab.fa-telegram-plane
+    a.login__button.login__button--signup(:class="getClassName", href="/signup/")
+      i.fas.fa-sign-up-alt
+      span Зарегистрироваться
 </template>
 
 <script>
+import ButtonTelegram from '../components/ButtonTelegram.vue'
+
 export default {
+  components: {
+    ButtonTelegram
+  },
   data() {
     return {
       checkbox: false
@@ -60,7 +71,7 @@ export default {
   justify-content: center;
 
   &__logo {
-    width: 224px;
+    width: 212px;
     height: auto;
   }
 
@@ -115,31 +126,70 @@ export default {
     }
   }
 
-  &__button {
+  &__buttons {
     width: 100%;
+    display: grid;
+    grid-template-columns: auto 60px 60px;
+    grid-template-rows: auto auto;
+    margin-top: 12px;
+  }
+
+  &__button {
+    width: 48px;
+    height: 48px;
     display: flex;
     justify-content: center;
+    align-items: center;
     border-radius: 6px;
-    margin-top: 12px;
-    color: #fff;
     padding: 12px;
-    background-color: #ff6800;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
+    transition: background-color 0.3s ease, opacity 0.3s ease, color 0.3s ease;
 
     &--disabled,
     &--disagree {
-      background-color: #aaa;
       pointer-events: none;
     }
 
-    &--disagree {
+    &--signin,
+    &--signup {
+      width: 100%;
+      background-color: #ff6800;
+      color: #fff;
+    }
+
+    &--signip {
+      i {
+        margin-left: -14px;
+      }
+    }
+
+    &--signup {
+      grid-column-start: 1;
+      grid-column-end: 4;
+      margin-top: 12px;
+    }
+
+    &--google {
+      margin-left: 12px;
+      background-color: #fff;
+      color: #26a2e1;
+    }
+
+    &--telegram {
+      margin-left: 12px;
+      background-color: #26a2e1;
+      color: #fff;
+    }
+
+    &--disagree,
+    &--disabled {
       background-color: #ccc;
+      color: #fff;
     }
 
     span {
       text-transform: uppercase;
       font-weight: 500;
-      margin-left: 12px;
+      margin-left: 8px;
     }
   }
 }

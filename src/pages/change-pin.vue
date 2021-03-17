@@ -10,7 +10,7 @@
   .change-pin__keypad
     button.change-pin__keypad-button(v-for="num in 9", @click="addNum(num)", type="button") {{ num }}
     button.change-pin__keypad-button.change-pin__keypad-button--zero(@click="addNum(0)", type="button") 0
-    button.change-pin__keypad-button.change-pin__keypad-button--delete(@click="delNum")
+    button.change-pin__keypad-button.change-pin__keypad-button--delete(@click="deleteNum")
       i.fas.fa-backspace
 </template>
 
@@ -74,7 +74,7 @@ export default {
         setTimeout(() => this.step = 1, 300);
       }
     },
-    delNum() {
+    deleteNum() {
       if (!this.pincodes[this.step].length || this.freezen) return;
       const value = this.pincodes[this.step].slice(0, this.pincodes[this.step].length - 1);
       this.$set(this.pincodes, this.step, value);

@@ -41,10 +41,18 @@ export default {
   methods: {
     ...mapMutations(['REMOVE_COIN']),
     receiveCoin(e) {
-      console.log(e, 'receive coin');
+      this.$http.get(`https://www.swapex.me/cointReceive/${e.name}`).then(response => {
+        console.log('receive response', response);
+      }, error => {
+        console.error(error)
+      });
     },
     transferCoin(e) {
-      console.log(e, 'transfer coin');
+      this.$http.get(`https://www.swapex.me/cointSend/${e.name}`).then(response => {
+        console.log('transfer response', response);
+      }, error => {
+        console.error(error)
+      });
     },
     clickItem(e) {
       console.log(e, 'click coin');

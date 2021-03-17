@@ -1,8 +1,19 @@
 <template lang="pug">
 label.base-switch
-  input.base-switch__input(type="checkbox")
+  input.base-switch__input(type="checkbox", :checked="checked")
   span.base-switch__slider
 </template>
+
+<script>
+export default {
+  props: {
+    checked: {
+      type: Boolean,
+      default: false
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 .base-switch {

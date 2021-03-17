@@ -6,8 +6,11 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 import store from './store/index.js';
 
 // import App from './pages/login.vue';
-// import App from './pages/index.vue';
-import App from './pages/change-pin.vue';
+// import App from './pages/signin.vue';
+// import App from './pages/signup.vue';
+// import App from './pages/referral.vue';
+import App from './pages/index.vue';
+// import App from './pages/change-pin.vue';
 // import App from './pages/coin.vue';
 // import App from './pages/buy.vue';
 // import App from './pages/transfer.vue';

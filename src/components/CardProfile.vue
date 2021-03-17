@@ -2,7 +2,7 @@
 .card-profile
   .card-profile__balance
     .card-profile__balance-title Баланс
-    .card-profile__balance-date Сегодня, 8 Марта
+    .card-profile__balance-date Сегодня, {{ day }} {{ mounths[mounth] }}
     ProfileBalance
   .card-profile__interactive
     button.card-profile__interactive-append(type="button")
@@ -20,6 +20,26 @@ export default {
   components: {
     ProfileBalance,
   },
+  data() {
+    return {
+      mounths: [
+        'января',
+        'февраля',
+        'марта',
+        'апреля',
+        'мая',
+        'июня',
+        'июля',
+        'августа',
+        'сентября',
+        'октября',
+        'ноября',
+        'декабря',
+      ],
+      day: 0,
+      mounth: 0,
+    }
+  },
   computed: {
     ...mapGetters(['GET_SHOW_DATA']),
     getClassIcon() {
@@ -30,6 +50,10 @@ export default {
   },
   methods: {
     ...mapActions(['TOGGLE_DATA'])
+  },
+  mounted() {
+    this.day = new Date().getDate();
+    this.mounth = new Date().getMonth();
   }
 };
 </script>
