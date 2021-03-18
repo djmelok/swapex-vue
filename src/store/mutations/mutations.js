@@ -21,6 +21,8 @@ export default {
     UPDATE_COINS(state, _value) {
         const value = Object.values(_value).filter(item => typeof item === 'object');
         value.forEach((item, idx) => {
+            if (!item.active) return;
+
             Vue.set(state.coins, idx, {
                 id: idx,
                 logo: item.ico,

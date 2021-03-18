@@ -5,7 +5,7 @@
     .card-profile__balance-date Сегодня, {{ day }} {{ mounths[mounth] }}
     ProfileBalance
   .card-profile__interactive
-    button.card-profile__interactive-append(type="button")
+    a.card-profile__interactive-append(href="/addCoints")
       | + Добавить актив
     button.card-profile__interactive-hiding(type="button", :class="getClassIcon", @click="TOGGLE_DATA")
       i.card-profile__interactive-hiding-icon.far.fa-eye
