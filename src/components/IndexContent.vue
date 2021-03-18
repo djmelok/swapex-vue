@@ -6,7 +6,7 @@
       CardCoin(
         :logo="item.logo",
         :name="item.name",
-        :amount="item.amount",
+        :amount="item.amount / 100",
         :fullName="item.fullName",
         :fullAmount="item.fullAmount",
         :rate="item.rate",
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 import { SwipeList } from 'vue-swipe-actions';
 import 'vue-swipe-actions/dist/vue-swipe-actions.css';
 import CardProfile from '../components/CardProfile.vue';
@@ -40,6 +40,7 @@ export default {
   },
   methods: {
     ...mapMutations(['REMOVE_COIN']),
+    ...mapActions(['API_GET_COINS']),
     receiveCoin(e) {
       this.$http.get(`https://www.swapex.me/cointReceive/${e.name}`).then(response => {
         console.log('receive response', response);
@@ -57,11 +58,24 @@ export default {
     clickItem(e) {
       console.log(e, 'click coin');
     }
+  },
+  created() {
+    this.API_GET_COINS();
   }
 };
 </script>
 
 <style lang="scss">
+[v-cloak] {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999999;
+  background: red;
+}
+
 .swipeout {
   $self: &;
 

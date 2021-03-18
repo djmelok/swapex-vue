@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 export default {
     async OPEN_SIDEBAR({ commit }) {
         await commit('OPEN_SIDEBAR');
@@ -16,5 +18,13 @@ export default {
     },
     async TOGGLE_DATA({ commit, state }) {
         await commit(state.isShowData ? 'HIDE_DATA' : 'SHOW_DATA');
-    }
+    },
+    async API_GET_COINS({ commit }) {
+        await Vue.http.post('https://swapex.me/api/testuser', { withCredentials: true })
+            .then(response => {
+                commit('UPDATE_COINS', response.data);
+            }, error => {
+                console.error(error)
+            });
+    },
 }
