@@ -13,9 +13,9 @@
         :ratePercent="item.ratePercent"
       )
     template(v-slot:left="{ item }")
-      .swipeout-action(@click="receiveCoin(item)")
+      a.swipeout-action(:href="`/cointReceive/${item.name}`")
         img.swipeout-action__img(src="../assets/images/icons/arrow_line_down_left_light.png")
-      .swipeout-action(@click="transferCoin(item)")
+      a.swipeout-action(:href="`/cointSend/${item.name}`")
         img.swipeout-action__img(src="../assets/images/icons/arrow_line_up_right_light.png")
     template(v-slot:right="{ item }")
       .swipeout-action(@click="REMOVE_COIN(item)")
@@ -41,20 +41,6 @@ export default {
   methods: {
     ...mapMutations(['REMOVE_COIN']),
     ...mapActions(['API_GET_COINS']),
-    receiveCoin(e) {
-      this.$http.get(`https://www.swapex.me/cointReceive/${e.name}`).then(response => {
-        console.log('receive response', response);
-      }, error => {
-        console.error(error)
-      });
-    },
-    transferCoin(e) {
-      this.$http.get(`https://www.swapex.me/cointSend/${e.name}`).then(response => {
-        console.log('transfer response', response);
-      }, error => {
-        console.error(error)
-      });
-    },
     clickItem(e) {
       console.log(e, 'click coin');
     }
