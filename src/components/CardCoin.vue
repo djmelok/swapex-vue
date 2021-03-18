@@ -83,6 +83,7 @@ export default {
   border-radius: 12px;
   background: linear-gradient(45deg, #1e1e1e, #252525);
   color: #fff;
+  cursor: pointer;
 
   &--hide {
     #{$self}__info {

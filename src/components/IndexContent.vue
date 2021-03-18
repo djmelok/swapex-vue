@@ -42,7 +42,7 @@ export default {
     ...mapMutations(['REMOVE_COIN']),
     ...mapActions(['API_GET_COINS']),
     clickItem(e) {
-      console.log(e, 'click coin');
+      window.location.href = `/coint/${e.name}`;
     }
   },
   created() {
@@ -52,16 +52,6 @@ export default {
 </script>
 
 <style lang="scss">
-[v-cloak] {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 99999999;
-  background: red;
-}
-
 .swipeout {
   $self: &;
 
